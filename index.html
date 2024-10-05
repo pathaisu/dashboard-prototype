@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Average Score by Scenario</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
 
     <style>
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Kanit', sans-serif;
       }
       .header {
         background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
@@ -75,22 +76,21 @@
     <div class="container mx-auto max-w-5xl" id="chart-container">
       <!-- Header -->
       <header class="header">
-        <h1>Nurse Student Performance Dashboard</h1>
-        <p>Analyze and Improve Student Performance in Practical Scenarios</p>
+        <h1>แดชบอร์ดผลการเรียนของนักศึกษาพยาบาล</h1>
+        <p>เครื่องมือสำหรับวิเคราะห์และปรับปรุงผลการเรียนในสถานการณ์การเรียนรู้</p>
       </header>
 
       <!-- Optional Toggle UI for Scenarios -->
       <div class="card mb-4">
-        <h2 class="chart-title text-gray-700 mb-2">Filter Scenarios</h2>
+        <h2 class="chart-title text-gray-700 mb-2">เลือกฉากการเรียน</h2>
         <div id="scenario-selection">
           <!-- Dynamically generated checkboxes for scenarios will go here -->
         </div>
       </div>
 
       <div class="card">
-        <h2 class="chart-title text-gray-700">Score Distribution Histogram (Select Scenarios)</h2>
-        <!-- <div id="scenario-selection" class="flex space-x-4 mb-4">
-]        </div> -->
+        <h2 class="chart-title text-gray-700">ฮิสโตแกรมการกระจายคะแนน</h2>
+        <p>กราฟนี้แสดงฮิสโตแกรมของคะแนนนักศึกษาในแต่ละช่วงคะแนน เพื่อวิเคราะห์ว่ามีการกระจายคะแนนไปในทิศทางใด</p>
         <canvas id="scoreDistributionHistogramByScenarios" width="400" height="200"></canvas>
       </div>
     </div>
@@ -175,7 +175,7 @@
           return totalScore / studentsData.length;
       });
 
-      /** Chart 1: **/
+      /** Chart 1: Class Average Score **/
       // Calculate average score for each scenario
       function registerClassAverageChart() {
         const container = document.getElementById('chart-container');
@@ -183,7 +183,8 @@
         const newChartDiv = document.createElement('div');
         newChartDiv.className = 'card';
         newChartDiv.innerHTML = `
-          <h2 class="chart-title text-gray-700">Class Average Score</h2>
+          <h1>แดชบอร์ดผลการเรียนของนักศึกษาพยาบาล</h1>
+          <p>เครื่องมือสำหรับวิเคราะห์และปรับปรุงผลการเรียนในสถานการณ์การเรียนรู้</p>
           <canvas id="classAverageChart" width="400" height="200"></canvas>
         `;
         
@@ -214,14 +215,15 @@
         });
       }
 
-      /** Chart 2: **/
+      /** Chart 2: Average Completion Time by Scenario **/
       function registerCompletionTimeChart() {
         const container = document.getElementById('chart-container');
         
         const newChartDiv = document.createElement('div');
         newChartDiv.className = 'card';
         newChartDiv.innerHTML = `
-          <h2 class="chart-title text-gray-700">Average Completion Time by Scenario</h2>
+          <h2 class="chart-title text-gray-700">เวลาเฉลี่ยในการทำกิจกรรม</h2>
+          <p>กราฟนี้แสดงค่าเฉลี่ยของเวลาที่นักศึกษาใช้ในการทำกิจกรรมแต่ละสถานการณ์เพื่อวัดประสิทธิภาพและความเร็วของนักศึกษา</p>
           <canvas id="completionTimeChart" width="400" height="200"></canvas>
         `;
         
@@ -257,14 +259,15 @@
         });
       }
 
-      /** Chart 3: **/
+      /** Chart 3: Score Distribution by Scenario **/
       const registerScoreDistributionChart = () => {
         const container = document.getElementById('chart-container');
         
         const newChartDiv = document.createElement('div');
         newChartDiv.className = 'card';
         newChartDiv.innerHTML = `
-          <h2 class="chart-title text-gray-700">Score Distribution by Scenario</h2>
+          <h2 class="chart-title text-gray-700">การกระจายคะแนนตามสถานการณ์</h2>
+          <p>กราฟนี้แสดงการกระจายตัวของคะแนนนักศึกษาตามสถานการณ์ ช่วยให้อาจารย์เข้าใจว่ามีการกระจายตัวของคะแนนอย่างไรในแต่ละสถานการณ์</p>
           <canvas id="scoreDistributionChart" width="400" height="200"></canvas>
         `;
         
@@ -329,81 +332,83 @@
         });
       }
 
-      /** Chart 4: **/
-      function registerScoreDistributionHistogram() {
-        const container = document.getElementById('chart-container');
+      /** Chart 4: Score Distribution Histogram **/
+      // function registerScoreDistributionHistogram() {
+      //   const container = document.getElementById('chart-container');
         
-        const newChartDiv = document.createElement('div');
-        newChartDiv.className = 'card';
-        newChartDiv.innerHTML = `
-          <h2 class="chart-title text-gray-700">Score Distribution Histogram</h2>
-          <canvas id="scoreDistributionHistogram" width="400" height="200"></canvas>
-        `;
+      //   const newChartDiv = document.createElement('div');
+      //   newChartDiv.className = 'card';
+      //   newChartDiv.innerHTML = `
+      //     <h2 class="chart-title text-gray-700">ฮิสโตแกรมการกระจายคะแนน</h2>
+      //     <p>กราฟนี้แสดงฮิสโตแกรมของคะแนนนักศึกษาในแต่ละช่วงคะแนน เพื่อวิเคราะห์ว่ามีการกระจายคะแนนไปในทิศทางใด</p>
+      //     <canvas id="scoreDistributionHistogram" width="400" height="200"></canvas>
+      //   `;
         
-        container.appendChild(newChartDiv);
+      //   container.appendChild(newChartDiv);
 
-         // Score bins (0-10, 11-20, ..., 91-100) for score distribution
-        const scoreHistogramBins = Array.from({ length: 10 }, (_, i) => `${i * 10}-${i * 10 + 9}`);
+      //    // Score bins (0-10, 11-20, ..., 91-100) for score distribution
+      //   const scoreHistogramBins = Array.from({ length: 10 }, (_, i) => `${i * 10}-${i * 10 + 9}`);
 
-        // Calculate score distribution for the first scenario (index 0 used as an example)
-        const scenarioScoreDistribution = Array(scoreHistogramBins.length).fill(0); // Initialize bin counts with 0
-        studentsData.forEach(student => {
-          const score = student.Data[0].Earned_Score; // First scenario score for each student
-          const binIndex = Math.min(Math.floor(score / 10), scoreHistogramBins.length - 1); // Find bin
-          scenarioScoreDistribution[binIndex]++;
-        });
+      //   // Calculate score distribution for the first scenario (index 0 used as an example)
+      //   const scenarioScoreDistribution = Array(scoreHistogramBins.length).fill(0); // Initialize bin counts with 0
+      //   studentsData.forEach(student => {
+      //     const score = student.Data[0].Earned_Score; // First scenario score for each student
+      //     const binIndex = Math.min(Math.floor(score / 10), scoreHistogramBins.length - 1); // Find bin
+      //     scenarioScoreDistribution[binIndex]++;
+      //   });
 
-        const ctx = newChartDiv.querySelector('#scoreDistributionHistogram').getContext('2d');
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: scoreHistogramBins,
-            datasets: [{
-              label: 'Number of Students',
-              data: scenarioScoreDistribution,
-              backgroundColor: 'rgba(255, 205, 86, 0.2)',
-              borderColor: 'rgba(255, 205, 86, 1)',
-              borderWidth: 1,
-              borderRadius: 8
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: 'Number of Students'
-                }
-              },
-              x: {
-                title: {
-                  display: true,
-                  text: 'Score Range'
-                }
-              }
-            },
-            plugins: {
-              tooltip: {
-                callbacks: {
-                  label: function(context) {
-                    return `${context.raw} students`;
-                  }
-                }
-              }
-            }
-          }
-        });
-      }
+      //   const ctx = newChartDiv.querySelector('#scoreDistributionHistogram').getContext('2d');
+      //   new Chart(ctx, {
+      //     type: 'bar',
+      //     data: {
+      //       labels: scoreHistogramBins,
+      //       datasets: [{
+      //         label: 'Number of Students',
+      //         data: scenarioScoreDistribution,
+      //         backgroundColor: 'rgba(255, 205, 86, 0.2)',
+      //         borderColor: 'rgba(255, 205, 86, 1)',
+      //         borderWidth: 1,
+      //         borderRadius: 8
+      //       }]
+      //     },
+      //     options: {
+      //       scales: {
+      //         y: {
+      //           beginAtZero: true,
+      //           title: {
+      //             display: true,
+      //             text: 'Number of Students'
+      //           }
+      //         },
+      //         x: {
+      //           title: {
+      //             display: true,
+      //             text: 'Score Range'
+      //           }
+      //         }
+      //       },
+      //       plugins: {
+      //         tooltip: {
+      //           callbacks: {
+      //             label: function(context) {
+      //               return `${context.raw} students`;
+      //             }
+      //           }
+      //         }
+      //       }
+      //     }
+      //   });
+      // }
 
-      /** Chart 5: **/
+      /** Chart 5: Pass/Fail Ratio **/
       function registerPassFailRatioChart() {
         const container = document.getElementById('chart-container');
         
         const newChartDiv = document.createElement('div');
         newChartDiv.className = 'card';
         newChartDiv.innerHTML = `
-          <h2 class="chart-title text-gray-700">Pass/Fail Ratio</h2>
+          <h2 class="chart-title text-gray-700">อัตราส่วนผ่าน/ไม่ผ่าน</h2>
+          <p>กราฟนี้แสดงอัตราส่วนนักศึกษาที่ผ่านและไม่ผ่านตามเกณฑ์คะแนน เพื่อให้อาจารย์เห็นภาพรวมของผลการเรียน</p>
           <canvas id="passFailRatioChart" width="400" height="200"></canvas>
         `;
         
@@ -461,14 +466,15 @@
         });
       }
 
-      /** Chart 6: **/
+      /** Chart 6: Improvement Suggestions (Lowest Average Scores) **/
       function registerImprovementSuggestionsChart() {
         const container = document.getElementById('chart-container');
         
         const newChartDiv = document.createElement('div');
         newChartDiv.className = 'card';
         newChartDiv.innerHTML = `
-          <h2 class="chart-title text-gray-700">Improvement Suggestions (Lowest Average Scores)</h2>
+          <h2 class="chart-title text-gray-700">ข้อเสนอแนะในการปรับปรุง</h2>
+          <p>กราฟเรดาร์นี้แสดงสถานการณ์ที่นักศึกษาได้คะแนนต่ำสุด เพื่อให้อาจารย์สามารถระบุจุดที่ควรปรับปรุงการเรียนการสอน</p>
           <canvas id="improvementSuggestionsRadarChart" width="400" height="200"></canvas>
         `;
         
@@ -530,14 +536,15 @@
         });
       }
 
-      /** Chart 7: **/
+      /** Chart 7: Top Performing Scenarios (Highest Average Scores) **/
       function registerTopPerformingChart() {
         const container = document.getElementById('chart-container');
         
         const newChartDiv = document.createElement('div');
         newChartDiv.className = 'card';
         newChartDiv.innerHTML = `
-          <h2 class="chart-title text-gray-700">Top Performing Scenarios (Highest Average Scores)</h2>
+          <h2 class="chart-title text-gray-700">สถานการณ์ที่ทำคะแนนสูงสุด</h2>
+          <p>กราฟเรดาร์นี้แสดงสถานการณ์ที่นักศึกษาได้คะแนนสูงสุด เพื่อให้อาจารย์เห็นจุดที่นักศึกษาทำได้ดี</p>
           <canvas id="topPerformingRadarChart" width="400" height="200"></canvas>
         `;
         
@@ -684,7 +691,7 @@
         });
       }
 
-      /** Chart 9: **/
+      /** Chart 9: Top and Bottom Performers **/
       // Calculate the average score for each student
       function registerTopBottomPerformersTable() {
         const container = document.getElementById('chart-container');
@@ -692,7 +699,8 @@
         const newTableDiv = document.createElement('div');
         newTableDiv.className = 'card';
         newTableDiv.innerHTML = `
-          <h2 class="chart-title text-gray-700">Top and Bottom Performers</h2>
+          <h2 class="chart-title text-gray-700">นักศึกษาที่ทำคะแนนสูงสุดและต่ำสุด</h2>
+          <p>ตารางนี้แสดงนักศึกษาที่ทำคะแนนสูงสุดและต่ำสุด เพื่อนำเสนอข้อมูลในรูปแบบที่เข้าใจง่าย</p>
           <table class="table-auto w-full text-left">
             <thead class="bg-gray-100">
               <tr>
@@ -750,14 +758,15 @@
         renderPerformers(bottomPerformers, 'bottomPerformers', false);
       }
 
-      /** Chart 10: **/
+      /** Chart 10: Scenario Difficulty vs. Importance **/
       function registerDifficultyImportanceChart() {
         const container = document.getElementById('chart-container');
         
         const newChartDiv = document.createElement('div');
         newChartDiv.className = 'card';
         newChartDiv.innerHTML = `
-          <h2 class="chart-title text-gray-700">Scenario Difficulty vs. Importance</h2>
+          <h2 class="chart-title text-gray-700">ความยากและความสำคัญของสถานการณ์</h2>
+          <p>กราฟกระจายนี้แสดงความยากและความสำคัญของสถานการณ์แต่ละสถานการณ์ เพื่อช่วยให้อาจารย์เข้าใจว่ามีความยากลำบากและความสำคัญในแต่ละสถานการณ์อย่างไร</p>
           <canvas id="difficultyImportanceChart" width="400" height="200"></canvas>
         `;
         
@@ -886,13 +895,15 @@
         });
       }
 
+      /** Chart 11: Class Average Score with Score Distribution */
       function registerMixedClassAverageChart() {
         const container = document.getElementById('chart-container');
         
         const newChartDiv = document.createElement('div');
         newChartDiv.className = 'card';
         newChartDiv.innerHTML = `
-          <h2 class="chart-title text-gray-700">Class Average Score with Score Distribution</h2>
+          <h2 class="chart-title text-gray-700">คะแนนเฉลี่ยของชั้นเรียนพร้อมการกระจายคะแนน</h2>
+          <p>กราฟนี้แสดงคะแนนเฉลี่ยของชั้นเรียนร่วมกับการกระจายคะแนน เพื่อให้เห็นภาพรวมของผลการเรียนและการกระจายตัวของคะแนนนักศึกษาในแต่ละสถานการณ์</p>
           <canvas id="classAverageChart" width="400" height="200"></canvas>
         `;
         
@@ -1098,7 +1109,88 @@
         // Trigger the initial chart rendering
         updateChart();
       }
-      
+
+      function registerImprovementAndTopPerformingChart() {
+        const container = document.getElementById('chart-container');
+        
+        const newChartDiv = document.createElement('div');
+        newChartDiv.className = 'card';
+        newChartDiv.innerHTML = `
+          <h2 class="chart-title text-gray-700">การแสดงคะแนนเฉลี่ยต่ำสุดและสูงสุดของสถานการณ์</h2>
+          <p class="text-gray-600 mb-4">กราฟนี้แสดงสถานการณ์ที่มีคะแนนเฉลี่ยต่ำสุดและสูงสุดของนักเรียน</p>
+          <canvas id="improvementAndTopPerformingChart" width="400" height="200"></canvas>
+        `;
+        
+        container.appendChild(newChartDiv);
+
+        // Sort scenarios by average score
+        const sortedScenarios = scenarioNames.map((name, index) => ({
+          scenario: name,
+          averageScore: averageScores[index]
+        })).sort((a, b) => a.averageScore - b.averageScore);
+
+        // Get lowest 5 and highest 5 scenarios
+        const lowestScenarios = sortedScenarios.slice(0, 5);
+        const highestScenarios = sortedScenarios.slice(-5);
+
+        const lowestScenarioNames = lowestScenarios.map(s => s.scenario);
+        const highestScenarioNames = highestScenarios.map(s => s.scenario);
+
+        const lowestScenarioScores = lowestScenarios.map(s => s.averageScore);
+        const highestScenarioScores = highestScenarios.map(s => s.averageScore);
+
+        const ctx = newChartDiv.querySelector('#improvementAndTopPerformingChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'radar',
+          data: {
+            labels: lowestScenarioNames.concat(highestScenarioNames), // Combine labels
+            datasets: [{
+              label: 'คะแนนเฉลี่ยต่ำสุด',
+              data: lowestScenarioScores,
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 2
+            }, {
+              label: 'คะแนนเฉลี่ยสูงสุด',
+              data: highestScenarioScores,
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+              r: {
+                angleLines: { display: true },
+                suggestedMin: 0,
+                suggestedMax: 100,
+                ticks: {
+                  stepSize: 20,
+                  color: '#374151',
+                  font: { size: 12 }
+                }
+              }
+            },
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return `${context.dataset.label}: ${context.raw.toFixed(2)}`;
+                  }
+                }
+              },
+              legend: {
+                position: 'top'
+              }
+            }
+          }
+        });
+      }
+
       // registerClassAverageChart();
       registerCompletionTimeChart();
       registerScoreDistributionChart();
@@ -1111,6 +1203,8 @@
       registerDifficultyImportanceChart();
       
       registerMixedClassAverageChart();
+
+      // registerImprovementAndTopPerformingChart();
     </script>
 </body>
 </html>
