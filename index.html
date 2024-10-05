@@ -89,109 +89,108 @@
     </style>
 </head>
 <body class="bg-gray-50 p-8">
-  <!-- Class Average Score Chart -->
-  <div class="container mx-auto max-w-5xl" id="chart-container">
-    <!-- Header -->
-    <header class="header">
-      <h1>แดชบอร์ดผลการเรียนของนักศึกษาพยาบาล</h1>
-      <p>เครื่องมือสำหรับวิเคราะห์และปรับปรุงผลการเรียนในสถานการณ์การเรียนรู้</p>
-    </header>
+    <!-- Class Average Score Chart -->
+    <div class="container mx-auto max-w-5xl" id="chart-container">
+      <!-- Header -->
+      <header class="header">
+        <h1>แดชบอร์ดผลการเรียนของนักศึกษาพยาบาล</h1>
+        <p>เครื่องมือสำหรับวิเคราะห์และปรับปรุงผลการเรียนในสถานการณ์การเรียนรู้</p>
+      </header>
 
-    <!-- Chart 1: -->
-    <div class="card mb-4">
-      <h2 class="chart-title text-gray-700">คะแนนเฉลี่ยของชั้นเรียนพร้อมการกระจายคะแนน</h2>
-      <p>กราฟนี้แสดงคะแนนเฉลี่ยของชั้นเรียนร่วมกับการกระจายคะแนน เพื่อให้เห็นภาพรวมของผลการเรียนและการกระจายตัวของคะแนนนักศึกษาในแต่ละสถานการณ์</p>
-      <canvas id="classAverageChart" width="400" height="200"></canvas>
-    </div>
-
-    <!-- Chart: 8 -->
-    <div class="card">
-      <h2 class="chart-title text-gray-700">แนวโน้มผลการปฏิบัติของนักเรียนตามเวลา</h2>
-      <p>แสดงแนวโน้มการเปลี่ยนแปลงของผลการปฏิบัติงานของนักเรียนในแต่ละสถานการณ์</p><br/>
-      <canvas id="performanceTrendChart" width="400" height="200"></canvas>
-    </div>
-
-    <!-- Chart 2: -->
-    <div class="card mb-4">
-      <h2 class="chart-title text-gray-700">เวลาเฉลี่ยในการทำกิจกรรม</h2>
-      <p>กราฟนี้แสดงค่าเฉลี่ยของเวลาที่นักศึกษาใช้ในการทำกิจกรรมแต่ละสถานการณ์เพื่อวัดประสิทธิภาพและความเร็วของนักศึกษา</p>
-      <canvas id="completionTimeChart" width="400" height="200"></canvas>
-    </div>
-
-    <!-- Chart 3: -->
-    <div class="card mb-4">
-      <h2 class="chart-title text-gray-700 mb-2">เลือกฉากการเรียน</h2>
-      <div id="scenario-selection">
-        <!-- Dynamically generated checkboxes for scenarios will go here -->
+      <!-- Chart 1: -->
+      <div class="card mb-4">
+        <h2 class="chart-title text-gray-700">คะแนนเฉลี่ยของชั้นเรียนพร้อมการกระจายคะแนน</h2>
+        <p>กราฟนี้แสดงคะแนนเฉลี่ยของชั้นเรียนร่วมกับการกระจายคะแนน เพื่อให้เห็นภาพรวมของผลการเรียนและการกระจายตัวของคะแนนนักศึกษาในแต่ละสถานการณ์</p>
+        <canvas id="classAverageChart" width="400" height="200"></canvas>
       </div>
-    </div>
 
-    <div class="card">
-      <h2 class="chart-title text-gray-700">ฮิสโตแกรมการกระจายคะแนน</h2>
-      <p>กราฟนี้แสดงฮิสโตแกรมของคะแนนนักศึกษาในแต่ละช่วงคะแนน เพื่อวิเคราะห์ว่ามีการกระจายคะแนนไปในทิศทางใด</p><br/>
-      <canvas id="scoreDistributionHistogramByScenarios" width="400" height="200"></canvas>
-    </div>
-
-    <div class="grid-layout-medium">
-      <!-- Chart 5: Pass/Fail Ratio -->
+      <!-- Chart: 8 -->
       <div class="card">
-        <h2 class="chart-title text-gray-700">อัตราส่วนผ่าน/ไม่ผ่าน</h2>
-        <p>กราฟนี้แสดงอัตราส่วนนักศึกษาที่ผ่านและไม่ผ่านตามเกณฑ์คะแนน เพื่อให้อาจารย์เห็นภาพรวมของผลการเรียน</p><br/>
-        <canvas id="passFailRatioChart" width="200" height="150"></canvas>
+        <h2 class="chart-title text-gray-700">แนวโน้มผลการปฏิบัติของนักเรียนตามเวลา</h2>
+        <p>แสดงแนวโน้มการเปลี่ยนแปลงของผลการปฏิบัติงานของนักเรียนในแต่ละสถานการณ์</p><br/>
+        <canvas id="performanceTrendChart" width="400" height="200"></canvas>
       </div>
 
-      <!-- Chart 4: -->
-      <div class="card">
-        <h2 class="chart-title text-gray-700">การแสดงคะแนนเฉลี่ยต่ำสุดและสูงสุดของสถานการณ์</h2>
-        <p class="text-gray-600 mb-4">กราฟนี้แสดงสถานการณ์ที่มีคะแนนเฉลี่ยต่ำสุดและสูงสุดของนักเรียน</p><br/>
-        <canvas id="improvementAndTopPerformingChart" width="400" height="200"></canvas>
-      </div>
-    </div>
-
-    <div class="grid-layout-medium">
-      <!-- Chart 6: Improvement Suggestions -->
-      <div class="card">
-        <h2 class="chart-title text-gray-700">ข้อเสนอแนะในการปรับปรุง</h2>
-        <p>กราฟเรดาร์นี้แสดงสถานการณ์ที่นักศึกษาได้คะแนนต่ำสุด เพื่อให้อาจารย์สามารถระบุจุดที่ควรปรับปรุงการเรียนการสอน</p><br/>
-        <canvas id="improvementSuggestionsRadarChart" width="200" height="150"></canvas>
+      <!-- Chart 2: -->
+      <div class="card mb-4">
+        <h2 class="chart-title text-gray-700">เวลาเฉลี่ยในการทำกิจกรรม</h2>
+        <p>กราฟนี้แสดงค่าเฉลี่ยของเวลาที่นักศึกษาใช้ในการทำกิจกรรมแต่ละสถานการณ์เพื่อวัดประสิทธิภาพและความเร็วของนักศึกษา</p>
+        <canvas id="completionTimeChart" width="400" height="200"></canvas>
       </div>
 
-      <!-- Chart 7: Top Performing Scenarios -->
-      <div class="card">
-        <h2 class="chart-title text-gray-700">สถานการณ์ที่ทำคะแนนสูงสุด</h2>
-        <p>กราฟเรดาร์นี้แสดงสถานการณ์ที่นักศึกษาได้คะแนนสูงสุด เพื่อให้อาจารย์เห็นจุดที่นักศึกษาทำได้ดี</p><br/>
-        <canvas id="topPerformingRadarChart" width="200" height="150"></canvas>
+      <div class="grid-layout-medium">
+        <!-- Chart 5: Pass/Fail Ratio -->
+        <div class="card">
+          <h2 class="chart-title text-gray-700">อัตราส่วนผ่าน/ไม่ผ่าน</h2>
+          <p>กราฟนี้แสดงอัตราส่วนนักศึกษาที่ผ่านและไม่ผ่านตามเกณฑ์คะแนน เพื่อให้อาจารย์เห็นภาพรวมของผลการเรียน</p><br/>
+          <canvas id="passFailRatioChart" width="200" height="150"></canvas>
+        </div>
+
+        <!-- Chart 4: -->
+        <div class="card">
+          <h2 class="chart-title text-gray-700">การแสดงคะแนนเฉลี่ยต่ำสุดและสูงสุดของสถานการณ์</h2>
+          <p class="text-gray-600 mb-4">กราฟนี้แสดงสถานการณ์ที่มีคะแนนเฉลี่ยต่ำสุดและสูงสุดของนักเรียน</p><br/>
+          <canvas id="improvementAndTopPerformingChart" width="400" height="200"></canvas>
+        </div>
       </div>
-    </div>
+
+      <div class="grid-layout-medium">
+        <!-- Chart 6: Improvement Suggestions -->
+        <div class="card">
+          <h2 class="chart-title text-gray-700">ข้อเสนอแนะในการปรับปรุง</h2>
+          <p>กราฟเรดาร์นี้แสดงสถานการณ์ที่นักศึกษาได้คะแนนต่ำสุด เพื่อให้อาจารย์สามารถระบุจุดที่ควรปรับปรุงการเรียนการสอน</p><br/>
+          <canvas id="improvementSuggestionsRadarChart" width="200" height="150"></canvas>
+        </div>
+
+        <!-- Chart 7: Top Performing Scenarios -->
+        <div class="card">
+          <h2 class="chart-title text-gray-700">สถานการณ์ที่ทำคะแนนสูงสุด</h2>
+          <p>กราฟเรดาร์นี้แสดงสถานการณ์ที่นักศึกษาได้คะแนนสูงสุด เพื่อให้อาจารย์เห็นจุดที่นักศึกษาทำได้ดี</p><br/>
+          <canvas id="topPerformingRadarChart" width="200" height="150"></canvas>
+        </div>
+      </div>
     
-    <div class="grid-layout-medium">
-      <!-- Chart 9: -->
-      <div class="card">
-        <h2 class="chart-title text-gray-700">นักศึกษาที่ทำคะแนนสูงสุดและต่ำสุด</h2>
-        <p>ตารางนี้แสดงนักศึกษาที่ทำคะแนนสูงสุดและต่ำสุด เพื่อนำเสนอข้อมูลในรูปแบบที่เข้าใจง่าย</p><br/>
-        <table class="table-auto w-full text-left">
-          <thead class="bg-gray-100">
-            <tr>
-              <th class="px-4 py-2 text-center">Rank</th>
-              <th class="px-4 py-2 text-center">Student</th>
-              <th class="px-4 py-2 text-center">Average Score</th>
-            </tr>
-          </thead>
-          <tbody id="topPerformers" class="text-center">
-            <!-- Top Performers Section -->
-          </tbody>
-          <tbody id="bottomPerformers" class="text-center">
-            <!-- Bottom Performers Section -->
-          </tbody>
-        </table>
+      <div class="grid-layout-medium">
+        <!-- Chart 9: -->
+        <div class="card">
+          <h2 class="chart-title text-gray-700">นักศึกษาที่ทำคะแนนสูงสุดและต่ำสุด</h2>
+          <p>ตารางนี้แสดงนักศึกษาที่ทำคะแนนสูงสุดและต่ำสุด เพื่อนำเสนอข้อมูลในรูปแบบที่เข้าใจง่าย</p><br/>
+          <table class="table-auto w-full text-left">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="px-4 py-2 text-center">Rank</th>
+                <th class="px-4 py-2 text-center">Student</th>
+                <th class="px-4 py-2 text-center">Average Score</th>
+              </tr>
+            </thead>
+            <tbody id="topPerformers" class="text-center">
+              <!-- Top Performers Section -->
+            </tbody>
+            <tbody id="bottomPerformers" class="text-center">
+              <!-- Bottom Performers Section -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Chart 10: -->
+        <div class="card">
+          <h2 class="chart-title text-gray-700">ความยากและความสำคัญของสถานการณ์</h2>
+          <p>กราฟกระจายนี้แสดงความยากและความสำคัญของสถานการณ์แต่ละสถานการณ์ เพื่อช่วยให้อาจารย์เข้าใจว่ามีความยากลำบากและความสำคัญในแต่ละสถานการณ์อย่างไร</p><br/>
+          <canvas id="difficultyImportanceChart" width="400" height="200"></canvas>
+        </div>          
       </div>
 
-      <!-- Chart 10: -->
+      <!-- Chart 3: -->
       <div class="card">
-        <h2 class="chart-title text-gray-700">ความยากและความสำคัญของสถานการณ์</h2>
-        <p>กราฟกระจายนี้แสดงความยากและความสำคัญของสถานการณ์แต่ละสถานการณ์ เพื่อช่วยให้อาจารย์เข้าใจว่ามีความยากลำบากและความสำคัญในแต่ละสถานการณ์อย่างไร</p><br/>
-        <canvas id="difficultyImportanceChart" width="400" height="200"></canvas>
-      </div>          
+        <h2 class="chart-title text-gray-700">ฮิสโตแกรมการกระจายคะแนน</h2>
+        <p>กราฟนี้แสดงฮิสโตแกรมของคะแนนนักศึกษาในแต่ละช่วงคะแนนในเชิงลึก เพื่อวิเคราะห์ว่ามีการกระจายคะแนนไปในทิศทางใด</p><br/>
+
+        <div id="scenario-selection">
+          <!-- Dynamically generated checkboxes for scenarios will go here -->
+        </div>
+        <br/>
+        <canvas id="scoreDistributionHistogramByScenarios" width="400" height="200"></canvas>
+      </div>
     </div>
 
     <script>
